@@ -1,29 +1,47 @@
-package com.hotel.model;
+package  com.hotel.demo.model;
 
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
 
-@Data
+
 @Entity
 @Table(name="customer")
 public class Customer {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "customer_id")
 	private Integer customer_id;
+	@Column(name = "name")
 	private String name;
+	
+	@Column(name = "email")
 	private String email;
+	
+	@Column(name = "password")
 	private String password;
-	private Address address;
-
 	
+	@Column(name = "address")
+	private String address;
 	
+	@OneToMany(mappedBy="customer")
+    private List<Order> order;
 	
-	public Customer(Integer customer_id, String name, String email, Address address,String password) {
+	public Customer() {
+		super();
+	}
+	public Customer(Integer customer_id, String name, String email, String address,String password) {
 		super();
 		this.customer_id = customer_id;
 		this.name = name;
@@ -51,10 +69,10 @@ public class Customer {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Address getAddress() {
+	public String getAddress() {
 		return address;
 	}
-	public void setAddress(Address address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
 	public String getPassword() {

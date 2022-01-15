@@ -1,14 +1,13 @@
-package com.hotel.model;
-
+package  com.hotel.demo.model;
 public class Invoice {
 	
 	private String invoice_id;
-	private Order order;
+	//private Order order;
 	
-	public Invoice(String invoice_id, Order order) {
+	public Invoice(String invoice_id) {
 		super();
 		this.invoice_id = invoice_id;
-		this.order = order;
+		//this.order = order;
 	}
 
 	public String getInvoice_id() {
@@ -19,12 +18,6 @@ public class Invoice {
 		this.invoice_id = invoice_id;
 	}
 
-	public Order getOrder() {
-		return order;
-	}
 
-	public void setOrder(Order order) {
-		this.order = order;
-	}
 	
 }

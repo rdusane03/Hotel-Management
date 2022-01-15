@@ -1,4 +1,4 @@
-package com.hotle.service;
+package com.hotel.demo.service;
 
 import java.util.List;
 
@@ -7,14 +7,13 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hotel.model.Customer;
-import com.hotel.repository.CustomerRepository;
+import com.hotel.demo.model.Customer;
+import com.hotel.demo.repository.CustomerRepository;
 
 @Service
 @Transactional
 public class CustomerService {
 
-	
 	@Autowired
     private CustomerRepository customerRepository;
 	
