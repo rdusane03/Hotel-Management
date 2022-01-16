@@ -2,60 +2,92 @@ package com.hotel.demo.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name="orders")
+@Document
 public class Order {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	
 	private int order_id;
-		
-	@OneToMany
-	private List<FoodItems> foodItems;
 
-	@ManyToOne
-    @JoinColumn(name = "customer_id", nullable = false)
-	private Customer customer;
+	
+	private String amount;
+	
 
-	public Order(int order_id, List<FoodItems> foodItems, Customer customer) {
+	private String customer_email;
+
+	
+
+    private List<FoodItems> foodItems;
+
+
+
+	public Order(int order_id, String amount, String customer_email, List<FoodItems> foodItems) {
 		super();
 		this.order_id = order_id;
+		this.amount = amount;
+		this.customer_email = customer_email;
 		this.foodItems = foodItems;
-		this.customer = customer;
 	}
+
+
+
+	public Order() {
+		super();
+	}
+
+
 
 	public int getOrder_id() {
 		return order_id;
 	}
 
+
+
 	public void setOrder_id(int order_id) {
 		this.order_id = order_id;
 	}
+
+
+
+	public String getAmount() {
+		return amount;
+	}
+
+
+
+	public void setAmount(String amount) {
+		this.amount = amount;
+	}
+
+
+
+	public String getCustomer_email() {
+		return customer_email;
+	}
+
+
+
+	public void setCustomer_email(String customer_email) {
+		this.customer_email = customer_email;
+	}
+
+
 
 	public List<FoodItems> getFoodItems() {
 		return foodItems;
 	}
 
+
+
 	public void setFoodItems(List<FoodItems> foodItems) {
 		this.foodItems = foodItems;
 	}
 
-	public Customer getCustomer() {
-		return customer;
-	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
+
+	
+	
 
 }

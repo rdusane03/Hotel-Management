@@ -1,38 +1,42 @@
 package com.hotel.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hotel.demo.model.Admin;
 import com.hotel.demo.model.Customer;
 import com.hotel.demo.model.Order;
-import com.hotel.demo.service.CustomerService;
 import com.hotel.demo.service.OrderService;
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/orders")
 public class OrderController {
 
-//	@Autowired
-//	private CustomerService customerService;
-//	
-//	@Autowired
-//	private OrderService orderService;
-//	
-//
-//	@RequestMapping(value = "/saveadmin", method = RequestMethod.POST)
-//	public void placeOrder(@RequestBody Order order) {
-//		Customer customer=customerService.get(order.getOrder());
-//		//adminService.save(admin);
-//	}
+	@Autowired
+	private OrderService orderService;
 	
-	@PostMapping
-	public void ooo(@RequestBody Order order) {
-		System.out.println("Order"+order.getOrder_id());
+	@RequestMapping(value = "/place", method = RequestMethod.POST)
+	public void placeOrder(@RequestBody Order order) {
 		
+		orderService.placeOrder(order);
+		System.out.println("Order"+order.getAmount());	
 	}
+	
+	@RequestMapping(value = "", method = RequestMethod.GET)
+	public List<Order> list() {
+		
+	    return orderService.getListofOrders();
+	}
+	
+	@RequestMapping(value="/{order_id}", method= RequestMethod.DELETE)
+	public void delete(@PathVariable Integer order_id) {
+		orderService.delete(order_id);
+	
+	
+}
 }

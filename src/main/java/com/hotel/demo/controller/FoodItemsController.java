@@ -14,25 +14,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hotel.demo.model.Customer;
 import com.hotel.demo.model.FoodItems;
-import com.hotel.demo.model.Login;
-import com.hotel.demo.service.CustomerService;
 import com.hotel.demo.service.FoodItemsService;
 
 @RestController
 @RequestMapping("/fooditems")
 public class FoodItemsController {
-	
+
 	@Autowired
 	private FoodItemsService foodItemsService;
 	
-	//@CrossOrigin(origins = "http://localhost:3000")
-	//@CrossOrigin
 	@PostMapping(value = "/save")
-	public void registerCustomer(@RequestBody FoodItems foodItems) {
+	public void addFoodItems(@RequestBody FoodItems foodItems) {
 	//	System.out.println("Hellooo"+customer.getAddress().toString());
-		foodItemsService.save(foodItems);
+		foodItemsService.saveItems(foodItems);
 	}
 	
 	@GetMapping
@@ -50,9 +45,12 @@ public class FoodItemsController {
 	    }      
 	}
 	
-	@RequestMapping(value="/{customer_id}", method= RequestMethod.DELETE)
-	public void delete(@PathVariable Integer customer_id) {
-		foodItemsService.deleteItem(customer_id);
+	@RequestMapping(value="/{item_id}", method= RequestMethod.DELETE)
+	public void deleteFoodItems(@PathVariable("item_id") Integer item_id) {
+		foodItemsService.deleteItem(item_id);
 	}
-
+	
+	
+	
+	
 }

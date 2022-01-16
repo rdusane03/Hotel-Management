@@ -1,4 +1,4 @@
-package com.hotel.demo.cofig;
+package com.hotel.demo.config;
 
 import java.io.IOException;
 import java.util.logging.Logger;

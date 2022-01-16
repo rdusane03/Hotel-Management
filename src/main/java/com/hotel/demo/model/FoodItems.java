@@ -1,52 +1,53 @@
 package  com.hotel.demo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import java.util.List;
 
-@Entity
-@Table(name="fooditems")
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection="fooditems")
 public class FoodItems {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer item_id;
-	private String item_name;
-	private String quantity;
-	private String item_price;
+	
+	private int item_id;
+	private String name;
+	private int quantity;
+	private int price;
 	private String description;
-	
-	@ManyToOne
-	@JoinColumn(name="order_id")
-	private Order order;
-	
-	public Integer getItem_id() {
+	public FoodItems(int item_id, String name, int quantity, int price, String description) {
+		super();
+		this.item_id = item_id;
+		this.name = name;
+		this.quantity = quantity;
+		this.price = price;
+		this.description = description;
+	}
+	public FoodItems() {
+		super();
+	}
+	public int getItem_id() {
 		return item_id;
 	}
-	public void setItem_id(Integer item_id) {
+	public void setItem_id(int item_id) {
 		this.item_id = item_id;
 	}
-	public String getItem_name() {
-		return item_name;
+	public String getName() {
+		return name;
 	}
-	public void setItem_name(String item_name) {
-		this.item_name = item_name;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
-	public void setQuantity(String quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public String getItem_price() {
-		return item_price;
+	public int getPrice() {
+		return price;
 	}
-	public void setItem_price(String item_price) {
-		this.item_price = item_price;
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	public String getDescription() {
 		return description;
@@ -54,20 +55,5 @@ public class FoodItems {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Order getOrder() {
-		return order;
-	}
-	public void setOrder(Order order) {
-		this.order = order;
-	}
-	public FoodItems(Integer item_id, String item_name, String quantity, String item_price, String description,
-			Order order) {
-		super();
-		this.item_id = item_id;
-		this.item_name = item_name;
-		this.quantity = quantity;
-		this.item_price = item_price;
-		this.description = description;
-		this.order = order;
-	}
+	
 }
